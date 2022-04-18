@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/django_challenge.iml" filepath="$PROJECT_DIR$/.idea/django_challenge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Django-challenge-001.iml" filepath="$PROJECT_DIR$/.idea/Django-challenge-001.iml" />
     </modules>
   </component>
 </project>
