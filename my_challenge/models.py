@@ -1,9 +1,13 @@
 from django.db import models
 
 
+def upload_image(instance, filename):
+    return f"{instance.id}-{filename}"
+
+
 class Author(models.Model):
     name = models.CharField(max_length=32)
-    picture = models.ImageField(blank=True)
+    picture = models.ImageField(blank=True, upload_to=upload_image)
 
     def __str__(self):
         return "%s" % self.name

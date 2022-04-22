@@ -1,61 +1,16 @@
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
-from rest_framework.response import Response
+from rest_framework import viewsets
 from .serializers import AuthorSerializer, ArticleSerializer
 from my_challenge.models import Author, Article
+from rest_framework.permissions import IsAuthenticated
 
 
-@api_view(["GET"])
-def getRoutes(request):
-    routes = [
-        {"GET": "/api/projects"},
-        {"GET": "/api/projects/id"},
-        {"POST": "/api/projects/id/vote"},
-
-        {"POST": "/api/users/token"},
-        {"POST": "/api/users/token/refresh"},
-    ]
-    return Response(routes)
+class AuthorViewSet(viewsets.ModelViewSet):
+    # permission_classes = (IsAuthenticated, )
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
 
 
-@api_view(["GET"])
-# @permission_classes([IsAuthenticated])
-def getAuthors(request):
-    authors = Author.objects.all()
-    serializer = AuthorSerializer(authors, many=True)
-    return Response(serializer.data)
-
-
-@api_view(["GET"])
-# @permission_classes([IsAuthenticated])
-def getAuthor(request, id):
-    author = Author.objects.get(id=id)
-    serializer = AuthorSerializer(author, many=False)
-    return Response(serializer.data)
-
-
-@api_view(["GET"])
-@permission_classes([IsAuthenticated])
-def getArticles(request):
-    articles = Article.objects.all()
-    serializer = ArticleSerializer(articles, many=True)
-    return Response(serializer.data)
-
-
-@api_view(["GET"])
-@permission_classes([IsAuthenticated])
-def getArticle(request, id):
-    article = Article.objects.get(id=id)
-    serializer = ArticleSerializer(article, many=False)
-    return Response(serializer.data)
-
-
-@api_view(["POST"])
-def createAuthor(request):
-    author = Author.objects.create()
-    data = request.data
-    author.name = data['name']
-    author.save()
-
-    serializer = AuthorSerializer(Author, many=False)
-    return Response(serializer.data)
+class ArticleViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
