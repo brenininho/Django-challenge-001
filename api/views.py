@@ -1,4 +1,5 @@
 import uuid
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, status, generics, serializers
 from rest_framework.response import Response
 from .serializers import AuthorSerializer, ArticleSerializer, RegisterSerializer, LoggedOutArticleSerializer
@@ -20,18 +21,20 @@ class Register(generics.GenericAPIView):
                 "User": serializer.data}, status=status.HTTP_201_CREATED
             )
 
-        return Response({"Errors": serializers.errors}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class AuthorViewSet(viewsets.ModelViewSet):
     # permission_classes = (IsAuthenticated, )
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
+    filterset_fields = ["name"]
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
     # permission_classes = (IsAuthenticated,)
     queryset = Article.objects.all()
+    filterset_fields = ["author", 'category', 'title']
 
     def get_serializer_class(self):
         if self.request.user.is_authenticated:
