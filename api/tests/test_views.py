@@ -82,3 +82,4 @@ class TestViews(APITestCase):
         # response_authors = self.client.get(self.authors_list)
         # print(f"Response: {response.data} \n Response2: {response_authors.data}")
         self.assertEqual(response.status_code, 404)
+

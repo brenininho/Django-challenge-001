@@ -1,5 +1,6 @@
 from django.db import models
 from uuid import uuid4
+from rest_framework.views import exception_handler
 
 
 def upload_image(instance, filename):
@@ -26,3 +27,10 @@ class Article(models.Model):
 
     def __str__(self):
         return "%s, %s" % (self.author, self.title)
+
+    def save(self, *args, **kwargs):
+
+        if self.body is not None:
+            if len(self.body) < 50:
+                print("Digite mais que 50 caracteres")
+        super(Article, self).save(*args, **kwargs)
