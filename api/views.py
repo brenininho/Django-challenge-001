@@ -43,6 +43,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
     # permission_classes = (IsAuthenticated,)
     queryset = Article.objects.all()
     filterset_fields = ["author", 'category', 'title']
+    # serializer_class = ArticleSerializer
 
     def get_serializer_class(self):
         if self.request.user.is_authenticated:
