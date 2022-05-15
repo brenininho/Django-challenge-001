@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 from datetime import timedelta
-
+import environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-!&m(hu!-y7e8_zj9)_*7sje18q3$$-28kxgxx(y0d(=yeo9f0$
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
+env = environ.Env()
+environ.Env.read_env()
 
 # Application definition
 

@@ -37,7 +37,8 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 
 class ArticleSerializer(serializers.ModelSerializer):
-    # author = AuthorSerializer(many=False)
+    author = AuthorSerializer(many=False, read_only=True)
+    author_id = serializers.UUIDField(write_only=True)
 
     class Meta:
         model = Article

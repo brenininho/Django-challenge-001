@@ -30,7 +30,6 @@ class Article(models.Model):
         return "%s, %s" % (self.author, self.title)
 
     def clean(self):
-        import ipdb;ipdb.set_trace()
         if self.body is not None:
             if len(self.body) < 50:
                 raise serializers.ValidationError({"body": 'body minimum digits is 50'})
