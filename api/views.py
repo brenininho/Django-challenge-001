@@ -2,7 +2,7 @@ import uuid
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, status, generics, serializers
 from rest_framework.response import Response
-from .serializers import AuthorSerializer, ArticleSerializer, RegisterSerializer, LoggedOutArticleSerializer
+from .serializers import AuthorSerializer, LoggedArticleSerializer, RegisterSerializer, LoggedOutArticleSerializer
 from my_challenge.models import Author, Article
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
@@ -33,20 +33,18 @@ class Register(generics.GenericAPIView):
 
 
 class AuthorViewSet(viewsets.ModelViewSet):
-    # permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated, )
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
     filterset_fields = ["name"]
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
-    # permission_classes = (IsAuthenticated,)
     queryset = Article.objects.all()
     filterset_fields = ["author", 'category', 'title']
-    # serializer_class = ArticleSerializer
 
     def get_serializer_class(self):
         if self.request.user.is_authenticated:
-            return ArticleSerializer
+            return LoggedArticleSerializer
         else:
             return LoggedOutArticleSerializer

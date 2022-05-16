@@ -36,7 +36,7 @@ class AuthorSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class ArticleSerializer(serializers.ModelSerializer):
+class GenericArticleSerializer(serializers.ModelSerializer):
     author = AuthorSerializer(many=False, read_only=True)
     author_id = serializers.UUIDField(write_only=True)
 
@@ -45,9 +45,13 @@ class ArticleSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class LoggedOutArticleSerializer(serializers.ModelSerializer):
-    # author = AuthorSerializer(many=False)
+class LoggedArticleSerializer(GenericArticleSerializer):
+    pass
+
+
+class LoggedOutArticleSerializer(GenericArticleSerializer):
 
     class Meta:
         model = Article
-        fields = ["author", "category", "title", "summary", "first_paragraph"]
+        exclude = ("body", )
+

@@ -1,0 +1,19 @@
+{
+	"id": "03f5491a-5ca2-4567-b52d-b0491e9f36ec",
+	"name": "Django Challenge 001",
+	"values": [
+		{
+			"key": "URL",
+			"value": "http://127.0.0.1:8000",
+			"enabled": true
+		},
+		{
+			"key": "token",
+			"value": "",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2022-05-16T20:07:25.211Z",
+	"_postman_exported_using": "Postman/8.12.5"
+}
