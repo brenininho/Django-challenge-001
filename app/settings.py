@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-!&m(hu!-y7e8_zj9)_*7sje18q3$$-28kxgxx(y0d(=yeo9f0$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["*", 'django-challenge-001.herokuapp.com']
 env = environ.Env()
 environ.Env.read_env()
 
@@ -175,3 +175,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+if os.getcwd() == '/app':
+    DEBUG = False
