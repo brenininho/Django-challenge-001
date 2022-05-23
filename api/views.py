@@ -40,11 +40,13 @@ class AuthorViewSet(viewsets.ModelViewSet):
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
     queryset = Article.objects.all()
     filterset_fields = ["author", 'category', 'title']
+    serializer_class = LoggedArticleSerializer
 
-    def get_serializer_class(self):
-        if self.request.user.is_authenticated:
-            return LoggedArticleSerializer
-        else:
-            return LoggedOutArticleSerializer
+
+class LoggedOutArticleViewSet(viewsets.ModelViewSet):
+    # permission_classes = (IsAuthenticated, )
+    queryset = Article.objects.all()
+    serializer_class = LoggedOutArticleSerializer

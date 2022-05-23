@@ -8,8 +8,9 @@ from .views import Register
 # from .views import Logout
 
 router = routers.DefaultRouter()
-router.register(r'authors', views.AuthorViewSet)
-router.register(r'articles', views.ArticleViewSet)
+router.register(r'admin/authors', views.AuthorViewSet)
+router.register(r'admin/articles', views.ArticleViewSet)
+router.register(r'articles', views.LoggedOutArticleViewSet)
 
 urlpatterns = [
     path('api/login/', TokenObtainPairView.as_view(), name='login'),

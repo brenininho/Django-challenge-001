@@ -3,7 +3,7 @@ services:
   db:
     image: postgres:12
     ports:
-      - "3310:5432"
+      - "3311:5432"
     environment:
       POSTGRES_PASSWORD: "challenge"
       POSTGRES_USER: "challenge"
