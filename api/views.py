@@ -4,7 +4,7 @@ from rest_framework import viewsets, status, generics, serializers
 from rest_framework.response import Response
 from .serializers import AuthorSerializer, LoggedArticleSerializer, RegisterSerializer, LoggedOutArticleSerializer
 from my_challenge.models import Author, Article
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.views import APIView
 
 
@@ -40,13 +40,13 @@ class AuthorViewSet(viewsets.ModelViewSet):
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, )
     queryset = Article.objects.all()
     filterset_fields = ["author", 'category', 'title']
     serializer_class = LoggedArticleSerializer
 
 
 class LoggedOutArticleViewSet(viewsets.ModelViewSet):
-    # permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticatedOrReadOnly, )
     queryset = Article.objects.all()
     serializer_class = LoggedOutArticleSerializer
