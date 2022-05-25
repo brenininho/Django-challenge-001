@@ -10,18 +10,18 @@ down:
 	docker-compose down
 
 build:
-	docker exec jungle pip install -r requirements.txt
-	docker exec jungle pip install --upgrade pip
-	docker exec jungle python3 manage.py migrate
+	docker exec db pip install -r requirements.txt
+	docker exec db pip install --upgrade pip
+	docker exec db python3 manage.py migrate
 
 test:
-	docker exec jungle python3 manage.py test
+	docker exec db python3 manage.py test
 
 logs:
 	docker-compose logs -f --tail 100
 
 run:
-	docker exec -it Djungle $(command)
+	docker exec -it db $(command)
 
 attach:
-	docker attach jungle
+	docker attach db

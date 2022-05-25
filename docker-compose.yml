@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-  django_challenge:
+  app:
     build: .
-    container_name: django_challenge
+    container_name: app
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./:/usr/src/app
@@ -14,7 +14,7 @@ services:
 
   db:
     container_name: db
-    image: postgres:12
+    image: postgres:14 #specify
     ports:
       - "3311:5432"
     environment:
