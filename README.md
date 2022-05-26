@@ -3,7 +3,7 @@ Django-challenge-001
 
 Objective:
 -
-- This project has the objective of improve my abilities using api rest framework
+- This project/challenge has the purpose of improve my abilities using Django Rest Framework. Implementing my knowledge in API. 
 
 Installation:
 -
