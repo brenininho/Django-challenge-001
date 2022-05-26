@@ -1,4 +1,5 @@
 coverage:
+	docker exec app coverage run manage.py test
 	docker exec app coverage report
 	docker exec app coverage html
 

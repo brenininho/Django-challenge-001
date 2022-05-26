@@ -11,6 +11,10 @@ Installation:
 - Docker Compose
 - Makefile
 
+Connect DB
+- 
+- Rename file app/.env_sample to .env, file already have db connection information
+
 run build:
 -
 - make build
