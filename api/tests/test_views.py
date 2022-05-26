@@ -17,7 +17,6 @@ class TestViews(APITestCase):
         self.user = User.objects.create_user(
             username='admin', password='admin')
 
-        # self.res = self.client.post(self.register_url, self.user_data, format="json")
         self.login_response = self.client.post(self.login_url, self.user_data, format="json")
         self.token = self.login_response.data["access"]
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + self.token)
